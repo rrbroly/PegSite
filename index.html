@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peg Site</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <style>
+    @font-face {
+      font-family: "Butter Cookies";
+      src: url("./data/fonts/ButterCookie-Regular.otf") format("opentype");
+    }
+  
+    nav a, .logo {
+      font-family: "Butter Cookies", sans-serif;
+    }
+
+    /* Adjust background size and position for smaller screens */
+    @media (max-width: 768px) {
+      #peg,
+      #who-peg,
+      #pegonomics {
+        background-size: cover;
+        background-position: center;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-blue-100">
+  <header class="fixed w-full px-6 py-4 bg-white shadow-md z-10 flex justify-between items-center">
+    <!-- Logo aligned to the left -->
+    <div>
+      <span class="logo text-gray-700 font-bold text-lg">💲PEG</span>
+    </div>
+
+    <!-- Navigation Links centered -->
+    <nav class="hidden md:flex justify-center space-x-5">
+      <ul class="flex justify-center space-x-5">
+        <li>
+          <a href="#peg" class="text-gray-600 hover:text-blue-700">$PEG PRINTER</a>
+        </li>
+        <li>
+          <a href="#who-peg" class="text-gray-600 hover:text-blue-700">Flip The Opps</a>
+        </li>
+        <li>
+          <a href="#pegonomics" class="text-gray-600 hover:text-blue-700">Make More Monies</a>
+        </li>
+        <li>
+          <a href="#buy" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">BUY $PEG</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Social Media Icons aligned to the right -->
+    <div class="flex items-center space-x-4">
+      <a href="https://twitter.com/pegpegsol">
+        <img src="./data/imgs/twitter-black-shape.png" alt="Twitter" class="w-6 h-6" />
+      </a>
+      <a href="https://t.me/pegpegsol">
+        <img src="./data/imgs/telegram.png" alt="Telegram" class="w-6 h-6" />
+      </a>
+    </div>
+
+    <!-- Hamburger menu for small screens -->
+    <button class="block md:hidden focus:outline-none">
+      <svg class="w-6 h-6 fill-current text-gray-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 12h18m-18 5h18m-18-10h18"></path></svg>
+    </button>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Section 1: 'Landing Page / $PEG PRINTER' -->
+    <section id="peg" class="min-h-screen bg-cover bg-center" style="background-image: url('./data/imgs/website.png');">
+      <div class="container mx-auto py-24">
+        <!-- Content here if needed -->
+      </div>
+    </section>
+
+    <!-- Section 2: 'WHO PEG? / Flip The Opps' -->
+    <section id="who-peg" class="min-h-screen bg-cover bg-center" style="background-image: url('./data/imgs/website2.png');">
+      <div class="container mx-auto py-24">
+        <!-- Content here if needed -->
+      </div>
+    </section>
+
+    <!-- Section 3: 'PEGONOMICS / Make More Monies' -->
+    <section id="pegonomics" class="min-h-screen bg-cover bg-center relative" style="background-image: url('./data/imgs/website3.png');">
+      <div class="container mx-auto py-24">
+        <!-- Content here if needed -->
+      </div>
+      <!-- Place this anchor at the bottom of the pegonomics section -->
+      <a href="https://FLIPD.GG/oSana" class="absolute inset-x-0 bottom-0 mb-5 mx-auto">
+        <img src="./data/imgs/peg-button.png" alt="Peg Buy Button" class="w-15 h-30" />
+      </a>
+    </section>
+  </main>
+
+  <script>
+    // Function to add the animation class
+    function animateOnScroll(els, animation) {
+      els.forEach((el) => {
+        const observer = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("animate__animated", animation);
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.5 } // Trigger when half of the item is in the viewport
+        );
+        observer.observe(el);
+      });
+    }
+
+    // Select all the elements you want to animate
+    const headings = document.querySelectorAll("h2");
+    const paragraphs = document.querySelectorAll("section p");
+
+    // Add animations
+    animateOnScroll(headings, "animate__fadeInDown");
+    animateOnScroll(paragraphs, "animate__fadeInUp");
+  </script>
+
+  <script>
+    // Listen for clicks on navigation links
+    document.querySelectorAll("nav a").forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute("href");
+        const targetSection = document.querySelector(targetId);
+        targetSection.scrollIntoView({ behavior: "smooth" });
+      });
+    });
+  </script>
+
+  <!-- Script for toggling mobile menu -->
+  <script>
+    const toggleButton = document.querySelector('button');
+    const nav = document.querySelector('nav');
+
+    toggleButton.addEventListener('click', () => {
+      nav.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>
